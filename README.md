@@ -1,4 +1,4 @@
-# HOPE-RFM95W-LORA-TESTS
+# LORA demonstration kit
 LORA transmission tests codes 
 
 This codes have been tested using ESP32WROOM dev board. They use VSPI for SPI and HOPE-RFM95W Lora
