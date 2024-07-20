@@ -46,21 +46,22 @@ This tests very basic sending and receiving. The transmitter sends a packet with
 count. 
 The receiver parses the received packet and prints out on the serial monitor.
 The screen shot below shows:
-
-Sender
+  
+Sender  
 ![](./imgs/lora-send.png)
-
-Receiver
+  
+Receiver  
 ![](./imgs/lora-receive.png)
-
+  
 ### 2. Simple button and LED control
 This tests how to control a remote LED using a button via LORA
 We attach a button on the sending esp32, when we press the button, the LED
 on the receive button gets turned ON
-The results from the serial monitor are shown below:
-Sender
+The results from the serial monitor are shown below:  
+Sender  
 ![](./imgs/button-send.png)
-Receiver
+  
+Receiver  
 ![](./imgs/button-receive.png)
 
 ### 3. Duplex communication
