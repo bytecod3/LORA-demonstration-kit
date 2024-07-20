@@ -25,9 +25,9 @@ Connect the LORA modules to ESP32 as follows:
 |RESET|2|
 |DIO0|22|
 
-These connections can be similar for the transmitter and the receiver. 
-```c Note: NSS(CS) can be choosen to be any pin. The DIO0 pin is the IRQ pin that MUST be capable 
-of hardware interrupt. On ESP32, any GPIO can be an interrupt pin ```
+These connections can be similar for the transmitter and the receiver.  
+Note: NSS(CS) can be choosen to be any pin. The DIO0 pin is the IRQ pin that MUST be capable 
+of hardware interrupt. On ESP32, any GPIO can be an interrupt pin
 
 #### Frequency 
 Use 868Mhz for Africa
