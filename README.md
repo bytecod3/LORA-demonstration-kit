@@ -48,10 +48,10 @@ The receiver parses the received packet and prints out on the serial monitor.
 The screen shot below shows:
   
 Sender  
-![](./imgs/lora-send.png)
+![](./imgs/simple-send.png)
   
 Receiver  
-![](./imgs/lora-receive.png)
+![](./imgs/simple-receive.png)
   
 ### 2. Simple button and LED control
 This tests how to control a remote LED using a button via LORA
