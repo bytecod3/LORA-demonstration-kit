@@ -5,7 +5,7 @@ This codes have been tested using ESP32WROOM dev board. They use VSPI for SPI an
 Modules pictured below. 
 The connections are almost similar if using other LORA modules such as the Adafruit RFM9x modules.
 
-[HOPERF-LORA-MODULE](./imgs/hoperf-lora.jpg)
+![HOPERF-LORA-MODULE](./imgs/hoperf-lora.jpg)
 
 ## Needed libraries
 1. Lora library by Sandeep Mistry (https://github.com/sandeepmistry/arduino-LoRa)
