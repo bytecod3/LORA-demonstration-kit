@@ -21,9 +21,6 @@ byte message_count = 0;
 void setup() {
    Serial.begin(115200);
 
-   // enable irq hardware interrupt pin
-
-   
    LoRa.setPins(cs_pin, reset_pin, irq_pin);
    Serial.println("LORA receive test");
 
@@ -48,10 +45,9 @@ void loop() {
       Serial.print((char) LoRa.read());
     }
 
-    // Print RSSI of the packet
-    Serial.print(" [RSSI]");
-    Serial.println(LoRa.packetRssi());
-  }
-  
+    // // Print RSSI of the packet
+    // Serial.print(" [RSSI]");
+    // Serial.println(LoRa.packetRssi());
+  }  
 
 }
