@@ -21,7 +21,7 @@ RTC_DATA_ATTR int message_counter = 0;
 RTC_DATA_ATTR int boot_count = 0;
 
 char msg_buffer[20]; // to hold the message to be transmitted
-int data; // actual sensor data (0, 1)
+int data = 34; // actual sensor data (0, 1)
 
 #define US_TO_S_CONVERSION_FACTOR 1E6
 #define SLEEP_TIME                10 // sleep time in seconds
@@ -68,7 +68,7 @@ void transmit_lora_packet() {
   Serial.println(message_count);
   LoRa.beginPacket();
   LoRa.print("Packet ");
-  LoRa.print(message_count);
+  LoRa.print(msg_buffer);
   LoRa.endPacket();
 
   message_count++;
