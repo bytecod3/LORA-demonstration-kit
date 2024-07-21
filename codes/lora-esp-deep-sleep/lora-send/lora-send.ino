@@ -12,9 +12,13 @@ By doing this we prolong the battery life powering our project
 #include <LoRa.h>
 #include <SPI.h>
 
-const int cs_pin = 4; 
+const int cs_pin = 27; 
 const int reset_pin = 2;
 const int irq_pin = 22; // DIO0 on HOPE RF LORA MODULE 
+
+// save vars to RTC memory so that they do not get wiped
+RTC_DATA_ATTR int message_counter = 0;
+RTC_DATA_ATTR int boot_count = 0;
 
 char msg_buffer[20]; // to hold the message to be transmitted
 int data; // actual sensor data (0, 1)
@@ -25,16 +29,14 @@ int data; // actual sensor data (0, 1)
 /**
 Initialize LORA
 **/
-uint8_t init_lora() {
+void init_lora() {
   LoRa.setPins(cs_pin, reset_pin, irq_pin);
-  Serial.println("LORA deep sleep test");
+  Serial.println("LORA send test");
 
   if(!LoRa.begin(868E6)) {
-    Serial.println("Lora failed to start");
-    return 0;
+  Serial.println("Lora failed to start");
   } else {
-    Serial.println("Lora started OK!");
-    return 1;
+  Serial.println("Lora started OK!");
   }
 
 }
@@ -58,40 +60,36 @@ void get_wake_up_reason() {
 **/
 RTC_DATA_ATTR int message_count;
 void transmit_lora_packet() { 
-  Serial.println("sending packet: ");
-  Serial.println(message_count);
-
   // compose packet 
   sprintf(msg_buffer, "%d, %d\n", message_count, data);
 
-  // send packet
+  // SEND DATA
+  Serial.print("sending packet: ");
+  Serial.println(message_count);
   LoRa.beginPacket();
-  LoRa.print(msg_buffer);
+  LoRa.print("Packet ");
+  LoRa.print(message_count);
   LoRa.endPacket();
 
   message_count++;
+
+  // give some time for the packet to send 
+  delay(2000);
 }
 
 void setup() {
   Serial.begin(115200);
 
-  // init the LORA modules 
-  uint8_t lora_status = init_lora();
+  init_lora();
 
   // init sensor pins
-  pinMode(4, INPUT);
+  // pinMode(4, INPUT);
 
-  // read the sensor every time we wake up
-  if(lora_status) {
-    int sensor_value = digitalRead(4);
-    
-    // transmit the value to receiver
-    transmit_lora_packet(); 
-    delay(3000);
-  } else {
-    Serial.println(F("Lora failed to start"));
-  }
-  
+  transmit_lora_packet();
+
+  // increment boot number with every boot
+  boot_count++;
+  Serial.println("Boot number: " + String(boot_count));
   // why did we wake up?
   get_wake_up_reason();
 
@@ -101,7 +99,8 @@ void setup() {
   Serial.println("[Going to sleep]");
   esp_deep_sleep_start();
 
-
 }
 
-void loop() {}
+void loop() {
+  
+}
